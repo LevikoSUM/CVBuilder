@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kosta\\source\\repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj": {}
+    "C:\\Users\\kosta\\Source\\Repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kosta\\source\\repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj": {
+    "C:\\Users\\kosta\\Source\\Repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kosta\\source\\repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj",
+        "projectUniqueName": "C:\\Users\\kosta\\Source\\Repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj",
         "projectName": "CVBuilder",
-        "projectPath": "C:\\Users\\kosta\\source\\repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj",
+        "projectPath": "C:\\Users\\kosta\\Source\\Repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj",
         "packagesPath": "C:\\Users\\kosta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kosta\\source\\repos\\CVBuilder\\CVBuilder\\obj\\",
+        "outputPath": "C:\\Users\\kosta\\Source\\Repos\\CVBuilder\\CVBuilder\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"

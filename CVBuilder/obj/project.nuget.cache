@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kAQEQQ6UBBb8nCwSWQ/ojVLC3eahMj/iASF5g3AA73AVutY0lLuVtbUq6Bfu6BtlABfP2HXq97NpzjVP5PnEAA==",
+  "dgSpecHash": "wdOtVCL/Yk84MJ9IxZaEt4b0g67VS66DzQII43P0JEwac6Xuj/Dg79ldzYx2gvEKnUejNIgeXWdAOUNwHvP+ng==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kosta\\source\\repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj",
+  "projectFilePath": "C:\\Users\\kosta\\Source\\Repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kosta\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\kosta\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.13\\microsoft.aspnetcore.cryptography.internal.6.0.13.nupkg.sha512",

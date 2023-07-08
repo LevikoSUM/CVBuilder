@@ -9,5 +9,7 @@
         public DateTime EndDate { get; set;}
         public string Responsibility { get; set;}
         public string Achievement { get; set; }
+        public int CVId { get; set; }
+        public CV CV { get; set; }
     }
 }

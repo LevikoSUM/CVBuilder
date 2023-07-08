@@ -9,5 +9,7 @@
         public int Age { get; set; }
         public string PhoneNumber { get; set; }
         public string EMail { get; set; }
+        public int CVId { get; set; }
+        public CV CV { get; set; }
     }
 }

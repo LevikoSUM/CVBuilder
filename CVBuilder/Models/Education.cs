@@ -6,5 +6,7 @@
         public string EducationName { get; set; }
         public string InstituteName { get; set; }
         public string EducationLevel { get; set; }
+        public int CVId { get; set; }
+        public CV CV { get; set; }
     }
 }

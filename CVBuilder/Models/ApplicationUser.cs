@@ -7,6 +7,7 @@ namespace CVBuilder.Models
         public string Nickname { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public ICollection<CV> CVs { get; set; }
 
     }
 }

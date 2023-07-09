@@ -27,8 +27,7 @@ namespace CVBuilder.Data
             modelBuilder.Entity<CV>()
                 .HasOne(cv => cv.PersonalInformation)
                 .WithOne(pi => pi.CV)
-                .HasForeignKey<PersonalInformation>(pi => pi.CVId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey<PersonalInformation>(pi => pi.CVId);
 
             modelBuilder.Entity<CV>()
                 .HasMany(cv => cv.Educations)

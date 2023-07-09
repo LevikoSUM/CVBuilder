@@ -2,7 +2,7 @@
 {
     public class CV
     {
-        public string CVId { get; set; }
+        public int CVId { get; set; }
         public string Name { get; set; }
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }

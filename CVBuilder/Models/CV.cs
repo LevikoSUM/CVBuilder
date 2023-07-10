@@ -1,4 +1,7 @@
-﻿namespace CVBuilder.Models
+﻿using CVBuilder.Data;
+using Microsoft.EntityFrameworkCore;
+
+namespace CVBuilder.Models
 {
     public class CV
     {
@@ -11,4 +14,5 @@
         public int PersonalInformationId { get; set; }
         public PersonalInformation PersonalInformation { get; set; }
     }
+
 }

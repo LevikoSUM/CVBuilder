@@ -1,6 +1,7 @@
 using CVBuilder.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using CVBuilder.Controllers;
 
 namespace CVBuilder
 {
@@ -46,6 +47,8 @@ namespace CVBuilder
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
+
+                        app.MapCVEndpoints();
 
             app.Run();
         }

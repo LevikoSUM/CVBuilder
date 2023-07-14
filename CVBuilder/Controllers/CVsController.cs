@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CVBuilder.Data;
 using CVBuilder.Models;
+using System.Security.Claims;
 
 namespace CVBuilder.Controllers
 {

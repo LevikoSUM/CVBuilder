@@ -2,6 +2,7 @@ using CVBuilder.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using CVBuilder.Controllers;
+using CVBuilder.Models;
 
 namespace CVBuilder
 {
@@ -17,7 +18,7 @@ namespace CVBuilder
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
@@ -42,13 +43,14 @@ namespace CVBuilder
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseMiddleware<BasicAuthHandler>("Test");
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
-                        app.MapCVEndpoints();
+            //app.MapCVEndpoints();
 
             app.Run();
         }

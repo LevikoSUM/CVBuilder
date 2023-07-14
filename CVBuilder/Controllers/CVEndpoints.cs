@@ -54,6 +54,7 @@ namespace CVBuilder.Controllers
                 string[] uipwd = creds.Split(':');
                 var uiname = uipwd[0];
                 var user = _context.Users.FirstOrDefault(x => x.Email == uiname);
+                cv.User = user;
                 var userid = user?.Id;
                 cv.UserId = userid;
                 // Add the CV to the context and save changes

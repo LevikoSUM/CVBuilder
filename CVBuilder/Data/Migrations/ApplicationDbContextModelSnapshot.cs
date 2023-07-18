@@ -53,8 +53,9 @@ namespace CVBuilder.Data.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("Nickname")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("NewPasswordHash")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -66,6 +67,10 @@ namespace CVBuilder.Data.Migrations
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
@@ -104,11 +109,56 @@ namespace CVBuilder.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CVId"), 1L, 1);
 
+                    b.Property<string>("Achievement")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EMail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EducationLevel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EducationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InstituteName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PersonalInformationId")
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Position")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Responsibility")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("TemplateId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
@@ -116,121 +166,31 @@ namespace CVBuilder.Data.Migrations
 
                     b.HasKey("CVId");
 
+                    b.HasIndex("TemplateId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("CVs");
                 });
 
-            modelBuilder.Entity("CVBuilder.Models.Education", b =>
+            modelBuilder.Entity("CVBuilder.Models.Template", b =>
                 {
-                    b.Property<int>("EducationId")
+                    b.Property<int>("TemplateId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EducationId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TemplateId"), 1L, 1);
 
-                    b.Property<int>("CVId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("EducationLevel")
+                    b.Property<string>("TemplateName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EducationName")
-                        .IsRequired()
+                    b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("InstituteName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("TemplateId");
 
-                    b.HasKey("EducationId");
-
-                    b.HasIndex("CVId");
-
-                    b.ToTable("Educations");
-                });
-
-            modelBuilder.Entity("CVBuilder.Models.Experience", b =>
-                {
-                    b.Property<int>("ExperienceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ExperienceId"), 1L, 1);
-
-                    b.Property<string>("Achievement")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CVId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CompanyName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Responsibility")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ExperienceId");
-
-                    b.HasIndex("CVId");
-
-                    b.ToTable("Experiences");
-                });
-
-            modelBuilder.Entity("CVBuilder.Models.PersonalInformation", b =>
-                {
-                    b.Property<int>("PersonalInformationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonalInformationId"), 1L, 1);
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CVId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("EMail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PersonalInformationId");
-
-                    b.HasIndex("CVId")
-                        .IsUnique();
-
-                    b.ToTable("PersonalInformations");
+                    b.ToTable("Templates");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -372,45 +332,19 @@ namespace CVBuilder.Data.Migrations
 
             modelBuilder.Entity("CVBuilder.Models.CV", b =>
                 {
+                    b.HasOne("CVBuilder.Models.Template", "Template")
+                        .WithMany("CVs")
+                        .HasForeignKey("TemplateId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("CVBuilder.Models.ApplicationUser", "User")
                         .WithMany("CVs")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
 
+                    b.Navigation("Template");
+
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("CVBuilder.Models.Education", b =>
-                {
-                    b.HasOne("CVBuilder.Models.CV", "CV")
-                        .WithMany("Educations")
-                        .HasForeignKey("CVId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CV");
-                });
-
-            modelBuilder.Entity("CVBuilder.Models.Experience", b =>
-                {
-                    b.HasOne("CVBuilder.Models.CV", "CV")
-                        .WithMany("Experiences")
-                        .HasForeignKey("CVId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CV");
-                });
-
-            modelBuilder.Entity("CVBuilder.Models.PersonalInformation", b =>
-                {
-                    b.HasOne("CVBuilder.Models.CV", "CV")
-                        .WithOne("PersonalInformation")
-                        .HasForeignKey("CVBuilder.Models.PersonalInformation", "CVId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CV");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -469,13 +403,9 @@ namespace CVBuilder.Data.Migrations
                     b.Navigation("CVs");
                 });
 
-            modelBuilder.Entity("CVBuilder.Models.CV", b =>
+            modelBuilder.Entity("CVBuilder.Models.Template", b =>
                 {
-                    b.Navigation("Educations");
-
-                    b.Navigation("Experiences");
-
-                    b.Navigation("PersonalInformation");
+                    b.Navigation("CVs");
                 });
 #pragma warning restore 612, 618
         }

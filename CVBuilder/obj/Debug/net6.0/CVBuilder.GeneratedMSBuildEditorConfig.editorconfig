@@ -176,26 +176,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosta/source/repos/CVBuilder/CVBuilder/Views/CVs/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1ZzXENyZWF0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/kosta/source/repos/CVBuilder/CVBuilder/Views/CVs/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1ZzXERlbGV0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/kosta/source/repos/CVBuilder/CVBuilder/Views/CVs/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1ZzXERldGFpbHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/kosta/source/repos/CVBuilder/CVBuilder/Views/CVs/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1ZzXEVkaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/kosta/source/repos/CVBuilder/CVBuilder/Views/CVs/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ1ZzXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/kosta/source/repos/CVBuilder/CVBuilder/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

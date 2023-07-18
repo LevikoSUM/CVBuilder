@@ -1,0 +1,176 @@
+﻿﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="~/css/dashboard.css">
+</head>
+
+<body>
+    <div class="blur-overlay"></div>
+
+    <div class="sidebar">
+        <a href="https://localhost:7247/Home" class="logo">
+            <i class='bx bx-code-alt'></i>
+            <div class="logo-name"><span>Colo</span>ssus</div>
+        </a>
+        <ul class="side-menu">
+            <li class="link-1"><a href="https://localhost:7247/Home"><i class='bx bxs-home-alt-2'></i>Home</a></li>
+            <li class="link-2"><a href="#"><i class='bx bx-group'></i>About</a></li>
+            <li class="link-3"><a href="#"><i class='bx bxs-contact'></i>Contacts</a></li>
+            <li class="link-4"><a href="https://localhost:7247/Home/Dashboard"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <nav>
+            <div class="iconM">
+                <i class='bx bx-menu'></i>
+            </div>
+            <div class="iconL">
+                <a href="#" class="logout">
+                    <i class='bx bx-log-out-circle'></i>
+                </a>
+                <a href="#" class="profile">
+                    <img src="~/img/logo.png" alt="Profile Image">
+                </a>
+            </div>
+        </nav>
+
+        <main>
+            <div class="header">
+                <div class="left">
+                    <h1>Dashboard</h1>
+                </div>
+                <button class="create-cv">Create CV</button>
+            </div>
+
+            <div class="cv-list">
+                <div id="cv-cards-container"></div>
+                <div class="cv-card">
+                    <h3>CV Title</h3>
+                    <p>CV Description</p>
+                    <div class="cv-actions">
+                        <button class="preview-btn">Preview</button>
+                        <button class="edit-btn">Edit</button>
+                        <button class="delete-btn">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="cv-modal-container">
+        <div class="cv-modal-content">
+            <div class="cv-modal-header">
+                <div class="cv-modal-title">
+                    <h1>Create/Edit CV</h1>
+                </div>
+                <div class="cv-modal-close">
+                    <span id="close-cv-modal">
+                        <i class='bx bx-x-circle'></i>
+                    </span>
+                </div>
+            </div>
+            <section>
+                <form id="cv-form">
+                    <fieldset>
+                        <legend>Personal Information</legend>
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" name="fullname" required>
+
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" required>
+
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" required>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Work Experience</legend>
+
+                        <div>
+                            <label for="job-title-1">Job Title</label>
+                            <input type="text" id="job-title-1" name="job-title-1" required>
+
+                            <label for="company-1">Company</label>
+                            <input type="text" id="company-1" name="company-1" required>
+
+                            <label for="start-date-1">Start Date</label>
+                            <input type="date" id="start-date-1" name="start-date-1" required>
+
+                            <label for="end-date-1">End Date</label>
+                            <input type="date" id="end-date-1" name="end-date-1">
+                        </div>
+
+                        <div>
+                            <label for="job-title-2">Job Title</label>
+                            <input type="text" id="job-title-2" name="job-title-2">
+
+                            <label for="company-2">Company</label>
+                            <input type="text" id="company-2" name="company-2">
+
+                            <label for="start-date-2">Start Date</label>
+                            <input type="date" id="start-date-2" name="start-date-2">
+
+                            <label for="end-date-2">End Date</label>
+                            <input type="date" id="end-date-2" name="end-date-2">
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Education</legend>
+
+                        <div>
+                            <label for="degree-1">Degree</label>
+                            <input type="text" id="degree-1" name="degree-1" required>
+
+                            <label for="university-1">University</label>
+                            <input type="text" id="university-1" name="university-1" required>
+
+                            <label for="graduation-year-1">Graduation Year</label>
+                            <input type="number" id="graduation-year-1" name="graduation-year-1" required>
+                        </div>
+
+                        <div>
+                            <label for="degree-2">Degree</label>
+                            <input type="text" id="degree-2" name="degree-2">
+
+                            <label for="university-2">University</label>
+                            <input type="text" id="university-2" name="university-2">
+
+                            <label for="graduation-year-2">Graduation Year</label>
+                            <input type="number" id="graduation-year-2" name="graduation-year-2">
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Skills</legend>
+
+                        <label for="skills">List your skills (comma-separated)</label>
+                        <textarea id="skills" name="skills" rows="3" required></textarea>
+                    </fieldset>
+
+                    <button id="save-cv-btn" type="submit">Save</button>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="~/js/modalCV.js"></script>
+    <script src="~/js/dashboard.js"></script>
+    <script src="~/js/sr.js"></script>
+</body>
+
+</html>

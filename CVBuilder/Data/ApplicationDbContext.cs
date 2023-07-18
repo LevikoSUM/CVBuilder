@@ -12,9 +12,8 @@ namespace CVBuilder.Data
         }
         public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<CV> CVs { get; set; }
-        public DbSet<Education> Educations { get; set; }
-        public DbSet<Experience> Experiences { get; set; }
-        public DbSet<PersonalInformation> PersonalInformations { get; set; }
+        public DbSet<Template> Templates { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,20 +24,9 @@ namespace CVBuilder.Data
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<CV>()
-                .HasOne(cv => cv.PersonalInformation)
-                .WithOne(pi => pi.CV)
-                .HasForeignKey<PersonalInformation>(pi => pi.CVId);
-
-            modelBuilder.Entity<CV>()
-                .HasMany(cv => cv.Educations)
-                .WithOne(e => e.CV)
-                .HasForeignKey(e => e.CVId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<CV>()
-                .HasMany(cv => cv.Experiences)
-                .WithOne(e => e.CV)
-                .HasForeignKey(e => e.CVId)
+                .HasOne(c => c.Template)
+                .WithMany(u => u.CVs)
+                .HasForeignKey(c => c.TemplateId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(modelBuilder);

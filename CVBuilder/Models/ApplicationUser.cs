@@ -7,9 +7,11 @@ namespace CVBuilder.Models
         public ApplicationUser() 
         {
         }
-        public string? Nickname { get; set; }
+        //public string? Username { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
+        public byte[] NewPasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
         public ICollection<CV> CVs { get; set; }
 
     }

@@ -27,43 +27,45 @@ window.addEventListener('resize', () => {
 
 //FETCH
 
-const form = document.getElementById('cv-form');
+const cvForm = document.getElementById('cv-form');
+cvForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-form.addEventListener('submit', function (event) {
-    event.preventDefault();
+    const formData = new FormData(cvForm);
 
-    const formData = new FormData(form);
+    try {
+        const response = await fetch('/api/cvs', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(formData),
+        });
 
-    fetch('/api/cvs', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(Object.fromEntries(formData))
-    })
-        .then(response => response.json())
-        .then(data => {
-            // Handle the response from the server
-            // The response should contain the newly created CV data
-            console.log('New CV created:', data);
+        if (response.ok) {
+            // Request successful, handle the response
+            const data = await response.json();
 
             // Update the frontend dashboard with the newly created CV
             const cvCardsContainer = document.getElementById('cv-cards-container');
             const cvCard = document.createElement('div');
             cvCard.classList.add('cv-card');
             cvCard.innerHTML = `
-    <h3>${data.title}</h3>
-    <p>${data.description}</p>
-    <div class="cv-actions">
-        <button class="preview-btn">Preview</button>
-        <button class="edit-btn">Edit</button>
-        <button class="delete-btn">Delete</button>
-    </div>
-`;
+        <h3>${data.fullname}</h3>
+        <p>${data.email}</p>
+        <p>${data.phone}</p>
+        <p>${data.address}</p>
+        <!-- Include other CV details as needed -->
+      `;
             cvCardsContainer.appendChild(cvCard);
-        })
-        .catch(error => {
-            console.error('Error creating CV:', error);
-        });
+        } else {
+            // Request failed, handle the error
+            console.error('Failed to create CV:', response.status);
+        }
+    } catch (error) {
+        // Error occurred during the request, handle the error
+        console.error('Error creating CV:', error);
+    }
 });
+
 

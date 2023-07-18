@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kosta\\Source\\Repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj": {}
+    "C:\\Users\\kosta\\source\\repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kosta\\Source\\Repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj": {
+    "C:\\Users\\kosta\\source\\repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kosta\\Source\\Repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj",
+        "projectUniqueName": "C:\\Users\\kosta\\source\\repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj",
         "projectName": "CVBuilder",
-        "projectPath": "C:\\Users\\kosta\\Source\\Repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj",
+        "projectPath": "C:\\Users\\kosta\\source\\repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj",
         "packagesPath": "C:\\Users\\kosta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kosta\\Source\\Repos\\CVBuilder\\CVBuilder\\obj\\",
+        "outputPath": "C:\\Users\\kosta\\source\\repos\\CVBuilder\\CVBuilder\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
@@ -44,25 +44,47 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.20, )"
+            },
+            "Microsoft.AspNetCore.Authorization": {
+              "target": "Package",
+              "version": "[6.0.20, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.13, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.0.13, )"
+              "version": "[6.0.20, )"
             },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
-              "version": "[6.0.13, )"
+              "version": "[6.0.20, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[6.0.20, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[6.0.13, )"
+              "version": "[6.0.20, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.13, )"
+              "version": "[6.0.20, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.15, )"
             }
           },
           "imports": [

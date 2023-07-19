@@ -38,6 +38,7 @@ cvForm.addEventListener('submit', async (e) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Token ' + 'eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJUZXN0QGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiNjVjZTQ0MmMtNGEyNC00NWUxLThkZTQtNzAwY2JjY2JjMzQ3IiwiZXhwIjoxNjg5ODQ2NDk3fQ.gSO8863sb0_GThJ2DQnwd15kewCCQkFoUEKINsPAEkigeG8s9IbH6PaPHldcyLKMYakcrrM9Fj177sKPZ4pOrQ'
             },
             body: new URLSearchParams(formData),
         });

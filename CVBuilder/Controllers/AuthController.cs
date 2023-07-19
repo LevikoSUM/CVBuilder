@@ -3,6 +3,7 @@ using CVBuilder.Dto;
 using CVBuilder.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -41,17 +42,18 @@ namespace CVBuilder.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(UserDto request)
         {
-            if (user.Email != request.Email)
+            var user1 = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+            if (user1 == null)
             {
                 return BadRequest("User not found.");
             }
 
-            if (!VerifyPasswordHash(request.Password, user.NewPasswordHash, user.PasswordSalt))
+            if (!VerifyPasswordHash(request.Password, user1.NewPasswordHash, user1.PasswordSalt))
             {
                 return BadRequest("Wrong password.");
             }
 
-            string token = CreateToken(user);
+            string token = CreateToken(user1);
 
             //var refreshToken = GenerateRefreshToken();
             //SetRefreshToken(refreshToken);
@@ -78,7 +80,7 @@ namespace CVBuilder.Controllers
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.NameIdentifier, user.Id)
             };
 

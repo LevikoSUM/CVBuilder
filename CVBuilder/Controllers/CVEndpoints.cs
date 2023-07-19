@@ -67,6 +67,7 @@ namespace CVBuilder.Controllers
                 //var userid = user?.Id;
                 //cv.UserId = userid;
                 // Add the CV to the context and save changes
+                cv.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 _context.Add(cv);
                 _context.SaveChanges();
                 var cvid = cv.CVId;

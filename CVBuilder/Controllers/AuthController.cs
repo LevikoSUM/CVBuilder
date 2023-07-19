@@ -79,10 +79,10 @@ namespace CVBuilder.Controllers
         private string CreateToken(ApplicationUser user)
         {
             List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.NameIdentifier, user.Id)
-            };
+    {
+        new Claim(ClaimTypes.Email, user.Email),
+        new Claim(ClaimTypes.NameIdentifier, user.Id)
+    };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
                 _configuration.GetSection("AppSettings:Token").Value));
@@ -98,5 +98,6 @@ namespace CVBuilder.Controllers
 
             return jwt;
         }
+
     }
 }

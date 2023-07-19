@@ -32,14 +32,28 @@ cvForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const formData = new FormData(cvForm);
+    const currentToken;
 
-    try {
+    try { /*call api/auth/login - POST, user cridentials {
+    "Email" : "Test@gmail.com",
+    "Password":"Parola"
+}*/
+        const loginauth = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "Email": "Test@gmail.com",
+                "Password": "Parola"
+                  }),
+        });
+        /*currentToken = loginauth.!!getthetoken!!;*/
         const response = await fetch('/api/cvs', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Token ' + 'eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJUZXN0QGdtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiNjVjZTQ0MmMtNGEyNC00NWUxLThkZTQtNzAwY2JjY2JjMzQ3IiwiZXhwIjoxNjg5ODQ2NDk3fQ.gSO8863sb0_GThJ2DQnwd15kewCCQkFoUEKINsPAEkigeG8s9IbH6PaPHldcyLKMYakcrrM9Fj177sKPZ4pOrQ'
-            },
+                'Authorization': 'Token ' + currentToken },
             body: new URLSearchParams(formData),
         });
 

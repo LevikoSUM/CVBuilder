@@ -39,8 +39,8 @@ cvForm.addEventListener('submit', async (e) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                Email: 'Test@gmail.com',
-                Password: 'Parola',
+                Email: 'T1@gmail.com',
+                Password: 'Parola1',
             }),
         });
 
@@ -52,7 +52,7 @@ cvForm.addEventListener('submit', async (e) => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    Authorization: 'Bearer ' + currentToken,
+                    'Authorization': 'Bearer ' + currentToken,
                 },
                 body: new URLSearchParams(formData),
             });

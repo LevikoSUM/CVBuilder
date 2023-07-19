@@ -45,7 +45,7 @@ cvForm.addEventListener('submit', async (e) => {
             },
             body: JSON.stringify({
                 "Email": "Test@gmail.com",
-                "Password": "Parola"
+                "Password": "Password"
                   }),
         });
         /*currentToken = loginauth.!!getthetoken!!;*/

@@ -24,35 +24,22 @@ window.addEventListener('resize', () => {
         sideBar.classList.remove('close');
     }
 });
-
-//FETCH
+/*call api/auth/login - POST, user cridentials {
+    "Email" : "Test@gmail.com",
+    "Password":"Parola"
+}*/
+////FETCH BETA
 
 const cvForm = document.getElementById('cv-form');
 cvForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const formData = new FormData(cvForm);
-
-    try { /*call api/auth/login - POST, user cridentials {
-    "Email" : "Test@gmail.com",
-    "Password":"Parola"
-}*/
-        const loginauth = await fetch('/api/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "Email": "Test@gmail.com",
-                "Password": "Password"
-            }),
-        });
-        /*currentToken = loginauth.!!getthetoken!!;*/
+    try {
         const response = await fetch('/api/cvs', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Token ' + currentToken
             },
             body: new URLSearchParams(formData),
         });
@@ -78,3 +65,59 @@ cvForm.addEventListener('submit', async (e) => {
         console.error('Error creating CV:', error);
     }
 });
+
+//const cvForm = document.getElementById('cv-form');
+//cvForm.addEventListener('submit', async (e) => {
+//    e.preventDefault();
+
+//    const formData = new FormData(cvForm);
+
+//    try {
+//        const loginauth = await fetch('/api/auth/login', {
+//            method: 'POST',
+//            headers: {
+//                'Content-Type': 'application/json'
+//            },
+//            body: JSON.stringify({
+//                "Email": "Test@gmail.com",
+//                "Password": "Password"
+//            }),
+//        });
+
+//        if (loginauth.ok) {
+//            const loginResponse = await loginauth.json();
+//            const currentToken = loginResponse.token;
+
+//            const response = await fetch('/api/cvs', {
+//                method: 'POST',
+//                headers: {
+//                    'Content-Type': 'application/x-www-form-urlencoded',
+//                    'Authorization': 'Bearer ' + currentToken
+//                },
+//                body: new URLSearchParams(formData),
+//            });
+
+//            if (response.ok) {
+//                const data = await response.json();
+
+//                const cvCardsContainer = document.getElementById('cv-cards-container');
+//                const cvCard = document.createElement('div');
+//                cvCard.classList.add('cv-card');
+//                cvCard.innerHTML = `
+//                    <h3>${data.fullname}</h3>
+//                    <p>${data.email}</p>
+//                    <p>${data.phone}</p>
+//                    <p>${data.address}</p>
+//                    <!-- Include other CV details as needed -->
+//                `;
+//                cvCardsContainer.appendChild(cvCard);
+//            } else {
+//                console.error('Failed to create CV:', response.status);
+//            }
+//        } else {
+//            console.error('Failed to login:', loginauth.status);
+//        }
+//    } catch (error) {
+//        console.error('Error creating CV:', error);
+//    }
+//});

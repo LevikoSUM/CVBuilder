@@ -109,50 +109,38 @@ namespace CVBuilder.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CVId"), 1L, 1);
 
-                    b.Property<string>("Achievement")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("Age")
                         .HasColumnType("int");
 
-                    b.Property<string>("CompanyName")
+                    b.Property<string>("Company")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EMail")
+                    b.Property<string>("Degree")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EducationLevel")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EducationName")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("InstituteName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("GraduationYear")
+                        .HasColumnType("int");
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("Jobtitle")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Position")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Responsibility")
+                    b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("StartDate")
@@ -160,6 +148,9 @@ namespace CVBuilder.Data.Migrations
 
                     b.Property<int?>("TemplateId")
                         .HasColumnType("int");
+
+                    b.Property<string>("University")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");

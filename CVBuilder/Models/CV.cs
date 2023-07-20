@@ -9,21 +9,18 @@ namespace CVBuilder.Models
         public string Name { get; set; }
         public string? UserId { get; set; }
         public ApplicationUser? User { get; set; }
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
+        public string? FullName { get; set; }
+        public string? Email { get; set; }
         public string? Gender { get; set; }
         public int? Age { get; set; }
-        public string? PhoneNumber { get; set; }
-        public string? EMail { get; set; }
-        public string? EducationName { get; set; }
-        public string? InstituteName { get; set; }
-        public string? EducationLevel { get; set; }
-        public string? CompanyName { get; set; }
-        public string? Position { get; set; }
+        public string? Phone { get; set; }
+        public string? Jobtitle { get; set; }
+        public string? Company { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public string? Responsibility { get; set; }
-        public string? Achievement { get; set; }
+        public string? Degree { get; set; }
+        public string? University { get; set; }
+        public int? GraduationYear { get; set; }
         public int? TemplateId { get; set; }
         public Template? Template { get; set; }
     }

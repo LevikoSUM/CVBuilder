@@ -52,40 +52,54 @@ namespace CVBuilder.Controllers
             return Ok();
         }
 
-        //[HttpPost("register")]
-        //public async Task<ActionResult<ApplicationUser>> Register(UserDto request)
-        //{
-        //    CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
-
-        //    user.Email = request.Email;
-        //    user.NewPasswordHash = passwordHash;
-        //    user.PasswordSalt = passwordSalt;
-
-        //    _context.Add(user);
-        //    await _context.SaveChangesAsync();
-        //    return Ok(user);
-        //}
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(UserDto request)
         {
-            var user1 = await _context.Users.FirstOrDefaultAsync(u => u.UserName == request.UserName);
-            if (user1 == null)
+            ApplicationUser user = null;
+
+            // Check if the input is a valid email format
+            bool isEmail = IsValidEmail(request.UserName);
+
+            if (isEmail)
+            {
+                // Try to log in using the email
+                user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.UserName);
+            }
+            else
+            {
+                // Try to log in using the username
+                user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == request.UserName);
+            }
+
+            if (user == null)
             {
                 return BadRequest("User not found.");
             }
 
-            if (!VerifyPasswordHash(request.Password, user1.NewPasswordHash, user1.PasswordSalt))
+            if (!VerifyPasswordHash(request.Password, user.NewPasswordHash, user.PasswordSalt))
             {
                 return BadRequest("Wrong password.");
             }
 
-            string token = CreateToken(user1);
-
-            //var refreshToken = GenerateRefreshToken();
-            //SetRefreshToken(refreshToken);
+            string token = CreateToken(user);
 
             return Ok(token);
         }
+
+        // Helper method to check if the input is a valid email format
+        private bool IsValidEmail(string input)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(input);
+                return addr.Address == input;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new HMACSHA512())

@@ -31,10 +31,21 @@ document.addEventListener('DOMContentLoaded', () => {
 //    e.preventDefault();
 
 //    // Get the values from the edit modal form
-//    const cvId = editCvForm.querySelector('input[name="cvId"]').value;
-//    const cvName = editCvForm.querySelector('input[name="cvname"]').value;
-//    const fullName = editCvForm.querySelector('input[name="fullname"]').value;
-//    const email = editCvForm.querySelector('input[name="email"]').value;
+//            cvForm.querySelector('input[name="cvname"]').value = cvData.Name;
+//            cvForm.querySelector('input[name="fullname"]').value = cvData.FullName;
+//            cvForm.querySelector('input[name="email"]').value = cvData.Email;
+//            cvForm.querySelector('input[name="gender"]').value = cvData.Gender;
+///*            cvForm.querySelector('input[name="age"]').value = cvData.Age;*/
+//            cvForm.querySelector('input[name="phone"]').value = cvData.Phone;
+//            cvForm.querySelector('input[name="address"]').value = cvData.Address;
+//            cvForm.querySelector('input[name="job-title"]').value = cvData.JobTitle;
+//            cvForm.querySelector('input[name="company"]').value = cvData.Company;
+//            //cvForm.querySelector('input[name="start-date"]').value = cvData.StartDate;
+//            //cvForm.querySelector('input[name="end-date"]').value = cvData.EndDate;
+//            cvForm.querySelector('input[name="degree"]').value = cvData.Degree;
+//            cvForm.querySelector('input[name="university"]').value = cvData.University;
+///*            cvForm.querySelector('input[name="graduation-year"]').value = cvData.GraduationYear;*/
+//            cvForm.querySelector('textarea[name="skills"]').value = cvData.Skills;
 //    // ... (get other input values)
 
 //    try {
@@ -48,7 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
 //                Name: cvName,
 //                FullName: fullName,
 //                Email: email,
-//                // ... (add other fields)
+//                Gender: gender,
+//                /*                Age: parseInt(age),*/
+//                Phone: phone,
+//                Jobtitle: jobTitle,
+//                Company: company,
+//                //StartDate: startDate,
+//                //EndDate: endDate,
+//                Degree: degree,
+//                University: university,
+//                /*                GraduationYear: parseInt(graduationYear),*/
+//                Skills: skills
 //            }),
 //        });
 

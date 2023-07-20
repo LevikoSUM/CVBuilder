@@ -74,7 +74,7 @@ cvForm.addEventListener('submit', async (e) => {
 
         if (response.ok) {
             console.log('Successfully created CV');
-            return window.location.href = "https://localhost:7247/Home/Dashboard";
+            window.location.reload();
 
 
         } else {
@@ -98,37 +98,25 @@ window.addEventListener('load', async () => {
         if (response.ok) {
             const cvsData = await response.json();
 
-            // Get the cv-list div to append the CV data
             const cvListDiv = document.querySelector('.cv-list');
 
-            // Clear any existing CV cards
             cvListDiv.innerHTML = '';
 
-            // Iterate through the CV data and add each CV as a new card in the cv-list div
             cvsData.forEach(cv => {
                 const cvCard = document.createElement('div');
                 cvCard.classList.add('cv-card');
 
-                // Build the HTML for the CV card
                 cvCard.innerHTML = `
-          <h2>${cv.name}</h2>
-          <p><strong>Full Name:</strong> ${cv.fullName}</p>
-          <p><strong>Email:</strong> ${cv.email}</p>
-          <p><strong>Gender:</strong> ${cv.gender}</p>
-          <p><strong>Age:</strong> ${cv.age}</p>
-          <p><strong>Phone:</strong> ${cv.phone}</p>
-          <p><strong>Address:</strong> ${cv.address}</p>
-          <p><strong>Job Title:</strong> ${cv.jobTitle}</p>
-          <p><strong>Company:</strong> ${cv.company}</p>
-          <p><strong>Start Date:</strong> ${cv.startDate}</p>
-          <p><strong>End Date:</strong> ${cv.endDate}</p>
-          <p><strong>Degree:</strong> ${cv.degree}</p>
-          <p><strong>University:</strong> ${cv.university}</p>
-          <p><strong>Graduation Year:</strong> ${cv.graduationYear}</p>
-          <p><strong>Skills:</strong> ${cv.skills}</p>
-        `;
+                <h2>${cv.name}</h2>
+                <button class="delete-cv-btn" data-cv-id="${cv.cvId}">Delete CV</button>
+                `;
 
-                // Append the CV card to the cv-list div
+                const deleteBtn = cvCard.querySelector('.delete-cv-btn');
+                deleteBtn.addEventListener('click', (event) => {
+                    const cvId = event.target.dataset.cvId;
+                    deleteCV(cvId);
+                });
+
                 cvListDiv.appendChild(cvCard);
             });
 
@@ -141,6 +129,27 @@ window.addEventListener('load', async () => {
     }
 });
 
+async function deleteCV(cvId) {
+  try {
+    const response = await fetch(`/api/cvs/${cvId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+      },
+    });
+
+    if (response.ok) {
+        console.log('Successfully deleted CV');
+        window.location.reload();
+      
+    } else {
+      console.error('Failed to delete CV:', response.status);
+    }
+  } catch (error) {
+    console.error('Error deleting CV:', error);
+  }
+}
 
 //const cvForm = document.getElementById('cv-form');
 //cvForm.addEventListener('submit', async (e) => {

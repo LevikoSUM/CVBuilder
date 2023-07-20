@@ -89,6 +89,7 @@ namespace CVBuilder.Controllers
 
             if (ModelState.IsValid)
             {
+                cv.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 _context.Update(cv);
                 _context.SaveChanges();
                 return NoContent();

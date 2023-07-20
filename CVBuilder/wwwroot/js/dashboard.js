@@ -106,14 +106,101 @@ window.addEventListener('load', async () => {
                 cvCard.classList.add('cv-card');
 
                 cvCard.innerHTML = `
-                <h2>${cv.name}</h2>
-                <button class="delete-cv-btn" data-cv-id="${cv.cvId}">Delete CV</button>
+                    <h2>${cv.name}</h2>
+                    <button class="delete-cv-btn" data-cv-id="${cv.cvId}">Delete CV</button>
+                    <button class="edit-cv-btn" data-cv-id="${cv.cvId}">Edit CV</button>
+                    <div class="edit-cv-form" style="display: none;">
+                        <h3>Edit CV</h3>
+                        <form class="edit-form">
+                            <!-- Add input fields to show/edit CV details -->
+                            <input type="text" name="edit-cv-name" value="${cv.name}" required>
+                            <input type="text" name="edit-fullname" value="${cv.fullName || ''}" >
+                            <input type="text" name="edit-email" value="${cv.email || ''}">
+                            <input type="text" name="edit-gender" value="${cv.gender || ''}">
+                            <input type="number" name="edit-age" value="${cv.age || ''}">
+                            <input type="text" name="edit-phone" value="${cv.phone || ''}">
+                            <input type="text" name="edit-job-title" value="${cv.jobtitle || ''}">
+                            <input type="text" name="edit-company" value="${cv.company || ''}">
+                            <input type="date" name="edit-start-date" value="${cv.startDate ? cv.startDate.split('T')[0] : ''}">
+                            <input type="date" name="edit-end-date" value="${cv.endDate ? cv.endDate.split('T')[0] : ''}">
+                            <input type="text" name="edit-degree" value="${cv.degree || ''}">
+                            <input type="text" name="edit-university" value="${cv.university || ''}">
+                            <input type="number" name="edit-graduation-year" value="${cv.graduationYear || ''}">
+                            <!-- Add other input fields for other CV details -->
+                            <button type="submit">Save Changes</button>
+                        </form>
+                    </div>
                 `;
 
                 const deleteBtn = cvCard.querySelector('.delete-cv-btn');
                 deleteBtn.addEventListener('click', (event) => {
                     const cvId = event.target.dataset.cvId;
                     deleteCV(cvId);
+                });
+
+                const editBtn = cvCard.querySelector('.edit-cv-btn');
+                const editForm = cvCard.querySelector('.edit-cv-form');
+
+                editBtn.addEventListener('click', () => {
+                    editForm.style.display = 'block';
+                });
+
+                const editFormSubmit = editForm.querySelector('form.edit-form');
+
+                editFormSubmit.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const cvId = editBtn.dataset.cvId;
+                    const editedCvName = editFormSubmit.querySelector('input[name="edit-cv-name"]').value;
+                    const editedFullName = editFormSubmit.querySelector('input[name="edit-fullname"]').value;
+                    const editedEmail = editFormSubmit.querySelector('input[name="edit-email"]').value;
+                    const editedGender = editFormSubmit.querySelector('input[name="edit-gender"]').value;
+                    const editedAge = editFormSubmit.querySelector('input[name="edit-age"]').value;
+                    const editedPhone = editFormSubmit.querySelector('input[name="edit-phone"]').value;
+                    const editedJobTitle = editFormSubmit.querySelector('input[name="edit-job-title"]').value;
+                    const editedCompany = editFormSubmit.querySelector('input[name="edit-company"]').value;
+                    const editedStartDate = editFormSubmit.querySelector('input[name="edit-start-date"]').value;
+                    const editedEndDate = editFormSubmit.querySelector('input[name="edit-end-date"]').value;
+                    const editedDegree = editFormSubmit.querySelector('input[name="edit-degree"]').value;
+                    const editedUniversity = editFormSubmit.querySelector('input[name="edit-university"]').value;
+                    const editedGraduationYear = editFormSubmit.querySelector('input[name="edit-graduation-year"]').value;
+
+
+                    try {
+                        const response = await fetch(`/api/cvs/${cvId}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+                            },
+                            body: JSON.stringify({
+                                CVId: cvId,
+                                Name: editedCvName,
+                                FullName: editedFullName,
+                                Email: editedEmail,
+                                Gender: editedGender,
+                                Age: parseInt(editedAge),
+                                Phone: editedPhone,
+                                Jobtitle: editedJobTitle,
+                                Company: editedCompany,
+                                StartDate: editedStartDate,
+                                EndDate: editedEndDate,
+                                Degree: editedDegree,
+                                University: editedUniversity,
+                                GraduationYear: parseInt(editedGraduationYear),
+                            }),
+                        });
+
+                        if (response.ok) {
+                            console.log('Successfully updated CV');
+                            window.location.reload();
+
+                        } else {
+                            console.error('Failed to update CV:', response.status);
+                        }
+                    } catch (error) {
+                        console.error('Error updating CV:', error);
+                    }
                 });
 
                 cvListDiv.appendChild(cvCard);

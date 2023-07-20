@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace CVBuilder.Controllers
 {
@@ -25,24 +26,49 @@ namespace CVBuilder.Controllers
             _context = context;
             //_userService = userService;
         }
-
         [HttpPost("register")]
-        public async Task<ActionResult<ApplicationUser>> Register(UserDto request)
+        public async Task<ActionResult<string>> Register(UserDto request)
         {
-            CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
+            var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+            if (existingUser != null)
+            {
+                return BadRequest("User already exists.");
+            }
 
-            user.Email = request.Email;
-            user.NewPasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
+            byte[] passwordHash, passwordSalt;
+            CreatePasswordHash(request.Password, out passwordHash, out passwordSalt);
 
-            _context.Add(user);
+            var newUser = new ApplicationUser
+            {
+                UserName = request.UserName,
+                Email = request.Email,
+                NewPasswordHash = passwordHash,
+                PasswordSalt = passwordSalt
+            };
+
+            _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
-            return Ok(user);
+
+            return Ok();
         }
+
+        //[HttpPost("register")]
+        //public async Task<ActionResult<ApplicationUser>> Register(UserDto request)
+        //{
+        //    CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
+
+        //    user.Email = request.Email;
+        //    user.NewPasswordHash = passwordHash;
+        //    user.PasswordSalt = passwordSalt;
+
+        //    _context.Add(user);
+        //    await _context.SaveChangesAsync();
+        //    return Ok(user);
+        //}
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(UserDto request)
         {
-            var user1 = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+            var user1 = await _context.Users.FirstOrDefaultAsync(u => u.UserName == request.UserName);
             if (user1 == null)
             {
                 return BadRequest("User not found.");
@@ -79,10 +105,10 @@ namespace CVBuilder.Controllers
         private string CreateToken(ApplicationUser user)
         {
             List<Claim> claims = new List<Claim>
-    {
-        new Claim(ClaimTypes.Email, user.Email),
-        new Claim(ClaimTypes.NameIdentifier, user.Id)
-    };
+                {
+                  new Claim(ClaimTypes.Email, user.Email),
+                  new Claim(ClaimTypes.NameIdentifier, user.Id)
+                };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
                 _configuration.GetSection("AppSettings:Token").Value));
@@ -95,7 +121,7 @@ namespace CVBuilder.Controllers
                 signingCredentials: creds);
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-
+            //HttpContext.Session.SetString("token", jwt);
 
             return jwt;
         }

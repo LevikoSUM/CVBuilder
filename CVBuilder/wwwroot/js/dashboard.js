@@ -33,44 +33,24 @@ cvForm.addEventListener('submit', async (e) => {
     const formData = new FormData(cvForm);
 
     try {
-        const loginauth = await fetch('/api/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                Email: 'Test@gmail.com',
-                Password: 'Parola',
-            }),
-        });
+        var currentToken = sessionStorage.getItem('token');
 
-        if (loginauth.ok) {
-            const loginResponse = await loginauth.json();
-            const currentToken = sessionStorage.getItem('token', jwt);
-
+        if (currentToken != null) {
             const response = await fetch('/api/cvs', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                    Authorization: 'Bearer ' + currentToken,
+                    'Authorization': 'Bearer ' + currentToken
                 },
-                body: new URLSearchParams(formData),
+                body: JSON.stringify({
+                    Name: formData.get('name'), // Assuming you have an input element with name="name"
+                    email: formData.get('email'), // Assuming you have an input element with name="email"
+                    password: formData.get('password') // Assuming you have an input element with name="password"
+                })
             });
 
             if (response.ok) {
-                const data = await response.json();
-
-                const cvCardsContainer = document.getElementById('cv-cards-container');
-                const cvCard = document.createElement('div');
-                cvCard.classList.add('cv-card');
-                cvCard.innerHTML = `
-          <h3>${data.fullname}</h3>
-          <p>${data.email}</p>
-          <p>${data.phone}</p>
-          <p>${data.address}</p>
-          <!-- Include other CV details as needed -->
-        `;
-                cvCardsContainer.appendChild(cvCard);
+                window.location.href = "https://localhost:7247/Home/Dashboard";
             } else {
                 console.error('Failed to create CV:', response.status);
             }
@@ -81,6 +61,7 @@ cvForm.addEventListener('submit', async (e) => {
         console.error('Error creating CV:', error);
     }
 });
+
 
 
 //const cvForm = document.getElementById('cv-form');

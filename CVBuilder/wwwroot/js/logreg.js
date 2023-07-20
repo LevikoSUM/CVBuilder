@@ -22,7 +22,7 @@ loginForm.addEventListener('submit', async (e) => {
             sessionStorage.setItem('token', data);
 
             console.log('Succesful login')
-            return window.location.href = "https://localhost:7247/Home"
+            return window.location.href = "https://localhost:7247/Home/Dashboard"
         } else {
             console.error('Failed to login:', response.status);
         }
@@ -60,9 +60,8 @@ registerForm.addEventListener('submit', async (e) => {
 
         if (response.ok) {
             console.log('Succesful registration');
-            return window.location.href = "https://localhost:7247/Home"
+            window.location.reload();
 
-            // Perform any additional actions after successful registration
         } else {
             console.error('Failed to register:', response.status);
         }

@@ -35,43 +35,33 @@ cvForm.addEventListener('submit', async (e) => {
     try {
         var currentToken = sessionStorage.getItem('token');
 
-        /*if (currentToken != null) {*/
+        if (currentToken != null) {
+            const response = await fetch('/api/cvs', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': 'Bearer ' + currentToken
+                },
+                body: JSON.stringify({
+                    Name: formData.get('name'), // Assuming you have an input element with name="name"
+                    email: formData.get('email'), // Assuming you have an input element with name="email"
+                    password: formData.get('password') // Assuming you have an input element with name="password"
+                })
+            });
 
-            //const response = await fetch('/api/cvs', {
-            //    method: 'POST',
-            //    headers: {
-            //        'Content-Type': 'application/x-www-form-urlencoded',
-            //        'Authorization': 'Bearer ' + currentToken
-            //    },
-            //    body: JSON.stringify({
-            //        Name: formData.get,
-            //        email: email,
-            //        password: password
-            //    });
-
-            //if (response.ok) {
-            //    return window.location.href = "https://localhost:7247/Home/Dashboard"
-        //        const cvCardsContainer = document.getElementById('cv-cards-container');
-        //        const cvCard = document.createElement('div');
-        //        cvCard.classList.add('cv-card');
-        //        cvCard.innerHTML = `
-        //  <h3>${data.fullname}</h3>
-        //  <p>${data.email}</p>
-        //  <p>${data.phone}</p>
-        //  <p>${data.address}</p>
-        //  <!-- Include other CV details as needed -->
-        //`;
-        //        cvCardsContainer.appendChild(cvCard);
-        //    } else {
-        //        console.error('Failed to create CV:', response.status);
-        //    }
-        //} else {
-        //    console.error('Failed to login:', loginauth.status);
-        //}
+            if (response.ok) {
+                window.location.href = "https://localhost:7247/Home/Dashboard";
+            } else {
+                console.error('Failed to create CV:', response.status);
+            }
+        } else {
+            console.error('Failed to login:', loginauth.status);
+        }
     } catch (error) {
         console.error('Error creating CV:', error);
     }
 });
+
 
 
 //const cvForm = document.getElementById('cv-form');

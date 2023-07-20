@@ -76,7 +76,6 @@ cvForm.addEventListener('submit', async (e) => {
             console.log('Successfully created CV');
             window.location.reload();
 
-
         } else {
             console.error('Failed to create CV:', response.status);
         }

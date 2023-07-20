@@ -115,7 +115,7 @@
 
                         <div>
                             <label for="degree">Degree</label>
-                            <input type="text" id="degree-1" name="degree">
+                            <input type="text" id="degree" name="degree">
 
                             <label for="university">University</label>
                             <input type="text" id="university" name="university">
@@ -133,6 +133,92 @@
                     </fieldset>
 
                     <button id="save-cv-btn" type="submit">Save</button>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <div id="edit-cv-modal-container" class="cv-modal-container">
+        <div class="cv-modal-content">
+            <div class="cv-modal-header">
+                <div class="cv-modal-title">
+                    <h1>Edit CV</h1>
+                </div>
+                <div class="cv-modal-close">
+                    <span id="close-edit-cv-modal">
+                        <i class='bx bx-x-circle'></i>
+                    </span>
+                </div>
+            </div>
+            <section>
+                <form id="edit-cv-form">
+                    <fieldset>
+                        <legend>CV Name</legend>
+                        <label for="cvname">Enter CV name</label>
+                        <input type="text" id="edit-cvname" name="cvname">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Personal Information</legend>
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="edit-fullname" name="fullname">
+
+                        <label for="email">Email</label>
+                        <input type="email" id="edit-email" name="email">
+
+                        <label for="gender">Gender</label>
+                        <input type="text" id="edit-gender" name="gender">
+
+                        <label for="age">Age</label>
+                        <input type="number" id="edit-age" name="age">
+
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="edit-phone" name="phone">
+
+                        <label for="address">Address</label>
+                        <input type="text" id="edit-address" name="address">
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Work Experience</legend>
+
+                        <div>
+                            <label for="job-title">Job Title</label>
+                            <input type="text" id="edit-job-title" name="job-title">
+
+                            <label for="company">Company</label>
+                            <input type="text" id="edit-company" name="company">
+
+                            <label for="start-date">Start Date</label>
+                            <input type="date" id="edit-start-date" name="start-date">
+
+                            <label for="end-date">End Date</label>
+                            <input type="date" id="edit-end-date" name="end-date">
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Education</legend>
+
+                        <div>
+                            <label for="degree-edit">Degree</label>
+                            <input type="text" id="edit-degree" name="degree">
+
+                            <label for="university">University</label>
+                            <input type="text" id="edit-university" name="university">
+
+                            <label for="graduation-year">Graduation Year</label>
+                            <input type="number" id="edit-graduation-year" name="graduation-year">
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Skills</legend>
+
+                        <label for="skills">List your skills (comma-separated)</label>
+                        <textarea id="edit-skills" name="skills" rows="3"></textarea>
+                    </fieldset>
+
+                    <button id="save-edit-cv-btn" type="submit">Save</button>
                 </form>
             </section>
         </div>

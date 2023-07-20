@@ -33,50 +33,41 @@ cvForm.addEventListener('submit', async (e) => {
     const formData = new FormData(cvForm);
 
     try {
-        const loginauth = await fetch('/api/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                Email: 'T1@gmail.com',
-                Password: 'Parola1',
-            }),
-        });
+        var currentToken = sessionStorage.getItem('token');
 
-        if (loginauth.ok) {
-            const loginResponse = await loginauth.json();
-            const currentToken = sessionStorage.getItem('token', jwt);
+        /*if (currentToken != null) {*/
 
-            const response = await fetch('/api/cvs', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Authorization': 'Bearer ' + currentToken,
-                },
-                body: new URLSearchParams(formData),
-            });
+            //const response = await fetch('/api/cvs', {
+            //    method: 'POST',
+            //    headers: {
+            //        'Content-Type': 'application/x-www-form-urlencoded',
+            //        'Authorization': 'Bearer ' + currentToken
+            //    },
+            //    body: JSON.stringify({
+            //        Name: formData.get,
+            //        email: email,
+            //        password: password
+            //    });
 
-            if (response.ok) {
-                const data = await response.json();
-
-                const cvCardsContainer = document.getElementById('cv-cards-container');
-                const cvCard = document.createElement('div');
-                cvCard.classList.add('cv-card');
-                cvCard.innerHTML = `
-          <h3>${data.fullname}</h3>
-          <p>${data.email}</p>
-          <p>${data.phone}</p>
-          <p>${data.address}</p>
-          <!-- Include other CV details as needed -->
-        `;
-                cvCardsContainer.appendChild(cvCard);
-            } else {
-                console.error('Failed to create CV:', response.status);
-            }
-        } else {
-            console.error('Failed to login:', loginauth.status);
-        }
+            //if (response.ok) {
+            //    return window.location.href = "https://localhost:7247/Home/Dashboard"
+        //        const cvCardsContainer = document.getElementById('cv-cards-container');
+        //        const cvCard = document.createElement('div');
+        //        cvCard.classList.add('cv-card');
+        //        cvCard.innerHTML = `
+        //  <h3>${data.fullname}</h3>
+        //  <p>${data.email}</p>
+        //  <p>${data.phone}</p>
+        //  <p>${data.address}</p>
+        //  <!-- Include other CV details as needed -->
+        //`;
+        //        cvCardsContainer.appendChild(cvCard);
+        //    } else {
+        //        console.error('Failed to create CV:', response.status);
+        //    }
+        //} else {
+        //    console.error('Failed to login:', loginauth.status);
+        //}
     } catch (error) {
         console.error('Error creating CV:', error);
     }

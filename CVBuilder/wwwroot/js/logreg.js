@@ -6,7 +6,7 @@ loginForm.addEventListener('submit', async (e) => {
     const password = loginForm.querySelector('input[type="password"]').value;
 
     try {
-        const response = await fetch('/api/auth/login', {
+        let response = await fetch('/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,11 +18,11 @@ loginForm.addEventListener('submit', async (e) => {
         });
 
         if (response.ok) {
-            const data = await response.json();
-            const token = data.token;
-            sessionStorage.setItem('token', token);
+            const data = await response.text();
+            sessionStorage.setItem('token', data);
 
-            // Perform any additional actions after successful login
+            console.log('Succesful login')
+            return window.location.href = "https://localhost:7247/Home"
         } else {
             console.error('Failed to login:', response.status);
         }
@@ -59,9 +59,8 @@ registerForm.addEventListener('submit', async (e) => {
         });
 
         if (response.ok) {
-            const data = await response.json();
-            const token = data.token;
-            sessionStorage.setItem('token', token);
+            console.log('Succesful registration');
+            return window.location.href = "https://localhost:7247/Home"
 
             // Perform any additional actions after successful registration
         } else {

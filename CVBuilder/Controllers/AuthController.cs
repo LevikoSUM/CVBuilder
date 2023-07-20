@@ -49,9 +49,7 @@ namespace CVBuilder.Controllers
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
 
-            string token = CreateToken(newUser);
-
-            return Ok(token);
+            return Ok();
         }
 
         //[HttpPost("register")]
@@ -70,7 +68,7 @@ namespace CVBuilder.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(UserDto request)
         {
-            var user1 = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+            var user1 = await _context.Users.FirstOrDefaultAsync(u => u.UserName == request.UserName);
             if (user1 == null)
             {
                 return BadRequest("User not found.");
@@ -123,7 +121,7 @@ namespace CVBuilder.Controllers
                 signingCredentials: creds);
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-            HttpContext.Session.SetString("token", jwt);
+            //HttpContext.Session.SetString("token", jwt);
 
             return jwt;
         }

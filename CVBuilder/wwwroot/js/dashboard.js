@@ -104,32 +104,142 @@ window.addEventListener('load', async () => {
             cvsData.forEach(cv => {
                 const cvCard = document.createElement('div');
                 cvCard.classList.add('cv-card');
-
+                
                 cvCard.innerHTML = `
+                <html>
+                <head>
+                <style>
+                .cv-card{
+                    background-image: linear-gradient(-45deg, #FFD1C7 25%, #FFE3C6 50%, #FFF7C7 75%, #D4F6D6 100%);
+                    border-radius: 30px;
+                }
+  .cv-card h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .delete-cv-btn,
+  .edit-cv-btn {
+    background: #f38b65; 
+    line-height: 1.4;
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+    border-radius: 30px;
+    text-transform: uppercase;
+    transition: all .55s ease;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .delete-cv-btn:hover,
+  .edit-cv-btn:hover{
+  background: #d97d57;
+    transform: translateY(2px);
+
+  }
+
+  .delete-cv-btn {
+    margin-right: 8px;
+  }
+
+  .edit-cv-btn {
+    margin-right: 8px;
+  }
+
+  .edit-form label {
+    display: block;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .edit-form input[type="text"],
+  .edit-form input[type="number"],
+  .edit-form input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid white;
+    border-radius: 30px;
+    background-color: transparent;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: all .55s ease;
+  }
+
+  .edit-form input[type="text"]:hover,
+  .edit-form input[type="number"]:hover,
+  .edit-form input[type="date"]:hover{
+  border: 2px solid #f38b65;
+  transform: translateY(-4px);
+  }
+
+  .edit-form button {
+    background: #f38b65; 
+    line-height: 1.4;
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+    border-radius: 30px;
+    text-transform: uppercase;
+    transition: all .55s ease;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 16px;
+  }
+  .edit-form button:hover {
+     border: 2px solid #f38b65;
+  transform: translateY(2px);
+  }
+</style>
+                </head>
+                <body>
                     <h2>${cv.name}</h2>
                     <button class="delete-cv-btn" data-cv-id="${cv.cvId}">Delete CV</button>
                     <button class="edit-cv-btn" data-cv-id="${cv.cvId}">Edit CV</button>
                     <div class="edit-cv-form" style="display: none;">
                         <h3>Edit CV</h3>
                         <form class="edit-form">
-                            <!-- Add input fields to show/edit CV details -->
+                            <label for="fullname">Full Name</label>
                             <input type="text" name="edit-cv-name" value="${cv.name}" required>
+                            <label for="email">Email</label>
                             <input type="text" name="edit-fullname" value="${cv.fullName || ''}" >
+                            <label for="gender">Gender</label>
                             <input type="text" name="edit-email" value="${cv.email || ''}">
+                            <label for="age">Age</label>
                             <input type="text" name="edit-gender" value="${cv.gender || ''}">
+                            <label for="phone">Phone</label>
                             <input type="number" name="edit-age" value="${cv.age || ''}">
+                            <label for="address">Address</label>
                             <input type="text" name="edit-phone" value="${cv.phone || ''}">
+                            <label for="job-title">Job Title</label>
                             <input type="text" name="edit-job-title" value="${cv.jobtitle || ''}">
+                            <label for="company">Company</label>
                             <input type="text" name="edit-company" value="${cv.company || ''}">
+                            <label for="start-date">Start Date</label>
                             <input type="date" name="edit-start-date" value="${cv.startDate ? cv.startDate.split('T')[0] : ''}">
+                            <label for="end-date">End Date</label>
                             <input type="date" name="edit-end-date" value="${cv.endDate ? cv.endDate.split('T')[0] : ''}">
+                            <label for="degree">Degree</label>
                             <input type="text" name="edit-degree" value="${cv.degree || ''}">
+                            <label for="university">University</label>
                             <input type="text" name="edit-university" value="${cv.university || ''}">
+                            <label for="graduation-year">Graduation Year</label>
                             <input type="number" name="edit-graduation-year" value="${cv.graduationYear || ''}">
-                            <!-- Add other input fields for other CV details -->
+
                             <button type="submit">Save Changes</button>
                         </form>
                     </div>
+                    </body>
+                    </html>
                 `;
 
                 const deleteBtn = cvCard.querySelector('.delete-cv-btn');
@@ -236,97 +346,3 @@ async function deleteCV(cvId) {
     console.error('Error deleting CV:', error);
   }
 }
-
-//const cvForm = document.getElementById('cv-form');
-//cvForm.addEventListener('submit', async (e) => {
-//    e.preventDefault();
-
-//    const formData = new FormData(cvForm);
-
-//    try {
-//        var currentToken = sessionStorage.getItem('token');
-
-//        if (currentToken != null) {
-//            const response = await fetch('/api/cvs', {
-//                method: 'POST',
-//                headers: {
-//                    'Content-Type': 'application/x-www-form-urlencoded',
-//                    'Authorization': 'Bearer ' + currentToken
-//                },
-//                body: JSON.stringify({
-//                    Name: formData.get('name'), // Assuming you have an input element with name="name"
-//                    email: formData.get('email'), // Assuming you have an input element with name="email"
-//                    password: formData.get('password') // Assuming you have an input element with name="password"
-//                })
-//            });
-
-//            if (response.ok) {
-//                window.location.href = "https://localhost:7247/Home/Dashboard";
-//            } else {
-//                console.error('Failed to create CV:', response.status);
-//            }
-//        } else {
-//            console.error('Failed to login:', loginauth.status);
-//        }
-//    } catch (error) {
-//        console.error('Error creating CV:', error);
-//    }
-//});
-
-
-
-//const cvForm = document.getElementById('cv-form');
-//cvForm.addEventListener('submit', async (e) => {
-//    e.preventDefault();
-
-//    const formData = new FormData(cvForm);
-
-//    try {
-//        const loginauth = await fetch('/api/auth/login', {
-//            method: 'POST',
-//            headers: {
-//                'Content-Type': 'application/json'
-//            },
-//            body: JSON.stringify({
-//                "Email": "Test@gmail.com",
-//                "Password": "Password"
-//            }),
-//        });
-
-//        if (loginauth.ok) {
-//            const loginResponse = await loginauth.json();
-//            const currentToken = loginResponse.token;
-
-//            const response = await fetch('/api/cvs', {
-//                method: 'POST',
-//                headers: {
-//                    'Content-Type': 'application/x-www-form-urlencoded',
-//                    'Authorization': 'Bearer ' + currentToken
-//                },
-//                body: new URLSearchParams(formData),
-//            });
-
-//            if (response.ok) {
-//                const data = await response.json();
-
-//                const cvCardsContainer = document.getElementById('cv-cards-container');
-//                const cvCard = document.createElement('div');
-//                cvCard.classList.add('cv-card');
-//                cvCard.innerHTML = `
-//                    <h3>${data.fullname}</h3>
-//                    <p>${data.email}</p>
-//                    <p>${data.phone}</p>
-//                    <p>${data.address}</p>
-//                    <!-- Include other CV details as needed -->
-//                `;
-//                cvCardsContainer.appendChild(cvCard);
-//            } else {
-//                console.error('Failed to create CV:', response.status);
-//            }
-//        } else {
-//            console.error('Failed to login:', loginauth.status);
-//        }
-//    } catch (error) {
-//        console.error('Error creating CV:', error);
-//    }
-//});

@@ -1,31 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kosta\\Source\\Repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj": {}
+    "C:\\Users\\dimmi\\Documents\\GitHub\\CVBuilder\\CVBuilder\\CVBuilder.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kosta\\Source\\Repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj": {
+    "C:\\Users\\dimmi\\Documents\\GitHub\\CVBuilder\\CVBuilder\\CVBuilder.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kosta\\Source\\Repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj",
+        "projectUniqueName": "C:\\Users\\dimmi\\Documents\\GitHub\\CVBuilder\\CVBuilder\\CVBuilder.csproj",
         "projectName": "CVBuilder",
-        "projectPath": "C:\\Users\\kosta\\Source\\Repos\\CVBuilder\\CVBuilder\\CVBuilder.csproj",
-        "packagesPath": "C:\\Users\\kosta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kosta\\Source\\Repos\\CVBuilder\\CVBuilder\\obj\\",
+        "projectPath": "C:\\Users\\dimmi\\Documents\\GitHub\\CVBuilder\\CVBuilder\\CVBuilder.csproj",
+        "packagesPath": "C:\\Users\\dimmi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dimmi\\Documents\\GitHub\\CVBuilder\\CVBuilder\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\kosta\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\dimmi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -106,7 +103,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

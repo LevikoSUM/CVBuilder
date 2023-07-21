@@ -35,7 +35,6 @@ cvForm.addEventListener('submit', async (e) => {
     const gender = cvForm.querySelector('input[name="gender"]').value;
     const age = cvForm.querySelector('input[name="age"]').value;
     const phone = cvForm.querySelector('input[name="phone"]').value;
-    const address = cvForm.querySelector('input[name="address"]').value;
     const jobTitle = cvForm.querySelector('input[name="job-title"]').value;
     const company = cvForm.querySelector('input[name="company"]').value;
     const startDate = cvForm.querySelector('input[name="start-date"]').value;
@@ -223,8 +222,6 @@ window.addEventListener('load', async () => {
                             <input type="text" name="edit-gender" value="${cv.age || ''}">
                             <label for="phone">Phone</label>
                             <input type="number" name="edit-age" value="${cv.phone || ''}">
-                            <label for="address">Address</label>
-                            <input type="text" name="edit-phone" value="${cv.address || ''}">
                             <label for="job-title">Job Title</label>
                             <input type="text" name="edit-job-title" value="${cv.jobtitle || ''}">
                             <label for="company">Company</label>

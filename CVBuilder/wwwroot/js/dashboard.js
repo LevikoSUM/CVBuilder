@@ -222,9 +222,9 @@ window.addEventListener('load', async () => {
                             <label for="age">Age</label>
                             <input type="text" name="edit-gender" value="${cv.gender || ''}">
                             <label for="phone">Phone</label>
-                            <input type="number" name="edit-age" value="${cv.age || ''}">
+                            <input type="number" name="edit-age" value="${cv.phone || ''}">
                             <label for="address">Address</label>
-                            <input type="text" name="edit-phone" value="${cv.phone || ''}">
+                            <input type="text" name="edit-phone" value="${cv.age || ''}">
                             <label for="job-title">Job Title</label>
                             <input type="text" name="edit-job-title" value="${cv.jobtitle || ''}">
                             <label for="company">Company</label>

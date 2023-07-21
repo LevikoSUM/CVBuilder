@@ -43,7 +43,6 @@ cvForm.addEventListener('submit', async (e) => {
     const degree = cvForm.querySelector('input[name="degree"]').value;
     const university = cvForm.querySelector('input[name="university"]').value;
     const graduationYear = cvForm.querySelector('input[name="graduation-year"]').value;
-    const skills = cvForm.querySelector('textarea[name="skills"]').value;
 
 
 
@@ -68,7 +67,6 @@ cvForm.addEventListener('submit', async (e) => {
                 Degree: degree,
                 University: university,
                 GraduationYear: parseInt(graduationYear),
-                Skills: skills
             }),
         });
 
@@ -199,6 +197,8 @@ window.addEventListener('load', async () => {
      border: 2px solid #f38b65;
   transform: translateY(2px);
   }
+
+
 </style>
                 </head>
                 <body>
@@ -252,7 +252,7 @@ window.addEventListener('load', async () => {
                 const editForm = cvCard.querySelector('.edit-cv-form');
 
                 editBtn.addEventListener('click', () => {
-                    editForm.style.display = 'block';
+                    editForm.style.display = editForm.style.display === 'none' ? 'block' : 'none';
                 });
 
                 const editFormSubmit = editForm.querySelector('form.edit-form');

@@ -118,7 +118,8 @@ window.addEventListener('load', async () => {
   }
 
   .delete-cv-btn,
-  .edit-cv-btn {
+  .edit-cv-btn,
+  .view-cv-btn{
     background: #f38b65; 
     line-height: 1.4;
     font-size: 14px;
@@ -133,9 +134,12 @@ window.addEventListener('load', async () => {
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
-
+  .edit-cv-btn{
+  margin-top:8px;
+  }
   .delete-cv-btn:hover,
-  .edit-cv-btn:hover{
+  .edit-cv-btn:hover,
+  .view-cv-btn:hover{
   background: #d97d57;
     transform: translateY(2px);
 

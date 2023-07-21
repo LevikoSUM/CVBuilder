@@ -35,7 +35,6 @@ cvForm.addEventListener('submit', async (e) => {
     const gender = cvForm.querySelector('input[name="gender"]').value;
     const age = cvForm.querySelector('input[name="age"]').value;
     const phone = cvForm.querySelector('input[name="phone"]').value;
-    const address = cvForm.querySelector('input[name="address"]').value;
     const jobTitle = cvForm.querySelector('input[name="job-title"]').value;
     const company = cvForm.querySelector('input[name="company"]').value;
     const startDate = cvForm.querySelector('input[name="start-date"]').value;
@@ -102,7 +101,7 @@ window.addEventListener('load', async () => {
             cvsData.forEach(cv => {
                 const cvCard = document.createElement('div');
                 cvCard.classList.add('cv-card');
-                
+
                 cvCard.innerHTML = `
                 <html>
                 <head>
@@ -213,18 +212,18 @@ window.addEventListener('load', async () => {
                     <div class="edit-cv-form" style="display: none;">
                         <h3>Edit CV</h3>
                         <form class="edit-form">
+                            <label for="cvname">Enter CV name</label>
+                            <input type="text" name="edit-cv-name" value="${cv.name}">
                             <label for="fullname">Full Name</label>
-                            <input type="text" name="edit-cv-name" value="${cv.name}" required>
+                            <input type="text" name="edit-fullname" value="${cv.fullName}" required>
                             <label for="email">Email</label>
-                            <input type="text" name="edit-fullname" value="${cv.fullName || ''}" >
+                            <input type="text" name="edit-email" value="${cv.email || ''}" >
                             <label for="gender">Gender</label>
-                            <input type="text" name="edit-email" value="${cv.email || ''}">
-                            <label for="age">Age</label>
                             <input type="text" name="edit-gender" value="${cv.gender || ''}">
+                            <label for="age">Age</label>
+                            <input type="text" name="edit-age" value="${cv.age || ''}">
                             <label for="phone">Phone</label>
-                            <input type="number" name="edit-age" value="${cv.age || ''}">
-                            <label for="address">Address</label>
-                            <input type="text" name="edit-phone" value="${cv.phone || ''}">
+                            <input type="number" name="edit-phone" value="${cv.phone || ''}">
                             <label for="job-title">Job Title</label>
                             <input type="text" name="edit-job-title" value="${cv.jobtitle || ''}">
                             <label for="company">Company</label>
@@ -335,23 +334,23 @@ window.addEventListener('load', async () => {
 });
 
 async function deleteCV(cvId) {
-  try {
-    const response = await fetch(`/api/cvs/${cvId}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-      },
-    });
+    try {
+        const response = await fetch(`/api/cvs/${cvId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+            },
+        });
 
-    if (response.ok) {
-        console.log('Successfully deleted CV');
-        window.location.reload();
-      
-    } else {
-      console.error('Failed to delete CV:', response.status);
+        if (response.ok) {
+            console.log('Successfully deleted CV');
+            window.location.reload();
+
+        } else {
+            console.error('Failed to delete CV:', response.status);
+        }
+    } catch (error) {
+        console.error('Error deleting CV:', error);
     }
-  } catch (error) {
-    console.error('Error deleting CV:', error);
-  }
 }

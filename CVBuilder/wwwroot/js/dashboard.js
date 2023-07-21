@@ -203,6 +203,7 @@ window.addEventListener('load', async () => {
                 </head>
                 <body>
                     <h2>${cv.name}</h2>
+                    <button class="view-cv-btn" data-cv-id="${cv.cvId}">View CV</button>
                     <button class="delete-cv-btn" data-cv-id="${cv.cvId}">Delete CV</button>
                     <button class="edit-cv-btn" data-cv-id="${cv.cvId}">Edit CV</button>
                     <div class="edit-cv-form" style="display: none;">
@@ -241,7 +242,11 @@ window.addEventListener('load', async () => {
                     </body>
                     </html>
                 `;
-
+                const viewBtn = cvCard.querySelector('.view-cv-btn');
+                viewBtn.addEventListener('click', (event) => {
+                    const cvId = event.target.dataset.cvId;
+                    window.location.href = `https://localhost:7247/Home/CV?cvId=${cvId}`;
+                });
                 const deleteBtn = cvCard.querySelector('.delete-cv-btn');
                 deleteBtn.addEventListener('click', (event) => {
                     const cvId = event.target.dataset.cvId;

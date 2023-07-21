@@ -214,17 +214,17 @@ window.addEventListener('load', async () => {
                         <h3>Edit CV</h3>
                         <form class="edit-form">
                             <label for="fullname">Full Name</label>
-                            <input type="text" name="edit-cv-name" value="${cv.name}" required>
+                            <input type="text" name="edit-cv-name" value="${cv.fullName}" required>
                             <label for="email">Email</label>
-                            <input type="text" name="edit-fullname" value="${cv.fullName || ''}" >
+                            <input type="text" name="edit-fullname" value="${cv.email || ''}" >
                             <label for="gender">Gender</label>
-                            <input type="text" name="edit-email" value="${cv.email || ''}">
+                            <input type="text" name="edit-email" value="${cv.gender || ''}">
                             <label for="age">Age</label>
-                            <input type="text" name="edit-gender" value="${cv.gender || ''}">
+                            <input type="text" name="edit-gender" value="${cv.age || ''}">
                             <label for="phone">Phone</label>
                             <input type="number" name="edit-age" value="${cv.phone || ''}">
                             <label for="address">Address</label>
-                            <input type="text" name="edit-phone" value="${cv.age || ''}">
+                            <input type="text" name="edit-phone" value="${cv.address || ''}">
                             <label for="job-title">Job Title</label>
                             <input type="text" name="edit-job-title" value="${cv.jobtitle || ''}">
                             <label for="company">Company</label>
